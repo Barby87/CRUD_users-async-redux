@@ -84,7 +84,8 @@ const usersReducer = ( state = initialStateUsers, action ) => {
                 ...state,
                 isLoading: 'succeeded',
                 // Guardando el nuevo elemento en el estado inicial
-                data: [...state.data, action.payload]
+                // data: [...state.data, action.payload]
+                data: action.payload
             };
         case UPDATE_USER_FAILURE:
             return {

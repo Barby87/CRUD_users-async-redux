@@ -13,6 +13,8 @@ import {
     UPDATE_USER_FAILURE, 
 } from "./constants";
 
+import { store } from "../index";
+
 // Acciones asíncronas
 // Fetch
 export const fetchUsersStart = () => ({
@@ -64,10 +66,22 @@ export const updateUserStart = () => ({
     type: UPDATE_USER_START,
 })
 
-export const updateUserSuccess = (user) => ({
-    type: UPDATE_USER_SUCCESS,
-    payload: user
-})
+export const updateUserSuccess = (userx) => {
+    // type: UPDATE_USER_SUCCESS,
+    // payload: user
+    const {users: usuarios} = store.getState();
+    // Accediendo a initialState.data
+    const users = usuarios.data;
+    // Buscando el index del usuario (userx) que se va a actualizar
+    const idEdit = users.findIndex((user) => user.id === userx.id);
+    users[idEdit] = userx;
+    debugger
+    return ({
+        // Retornando un objeto plano
+        type: UPDATE_USER_SUCCESS,
+        payload: users
+    }) 
+}
 
 export const updateUserFailure = (errorMessage) => ({
     type: UPDATE_USER_FAILURE,

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 const UserList = () => {
     const users = useSelector(usersSelector);
-    console.log('users', users);
     const { isLoading } = useSelector((state) => state.users)
     const dispatch = useDispatch();
 

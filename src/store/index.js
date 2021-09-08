@@ -8,4 +8,6 @@ import rootReducer from "./rootReducer";
 // const middlewareEnhancer = applyMiddleware(...middlewares);
 const middlewareEnhancer = applyMiddleware(thunk);
 
-export const store = createStore(rootReducer, composeWithDevTools(middlewareEnhancer))
+export const store = createStore(rootReducer, composeWithDevTools(middlewareEnhancer));
+
+// export default store
