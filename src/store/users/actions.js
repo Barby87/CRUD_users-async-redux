@@ -75,7 +75,6 @@ export const updateUserSuccess = (userx) => {
     // Buscando el index del usuario (userx) que se va a actualizar
     const idEdit = users.findIndex((user) => user.id === userx.id);
     users[idEdit] = userx;
-    debugger
     return ({
         // Retornando un objeto plano
         type: UPDATE_USER_SUCCESS,

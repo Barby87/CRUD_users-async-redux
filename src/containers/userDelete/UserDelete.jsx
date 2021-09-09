@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { usersSelector } from '../../store/users/selectors';
 import { deleteUserStartThunk } from '../../store/users/thunks';
+import { Col, Row } from 'antd';
+import styles from './UserDelete.module.css';
 
 const UserDelete = () => {
     const users = useSelector(usersSelector);
@@ -22,10 +25,21 @@ const UserDelete = () => {
     }
 
     return (
-        <div>
-            ¿De verdad quieres borrar a : {user?.name}?
-            <button onClick={handleDelete}>Borrar</button>
-        </div>
+        <>
+            <Row type="flex" justify="center" align="middle" className={styles.title_container}>
+                <Col>
+                    <h2>
+                        ¿De verdad quieres borrar a {user?.name}?
+                    </h2>
+                </Col>
+                
+            </Row>
+            <Row type="flex" justify="center" align="middle">
+                <Col>
+                    <Button onClick={handleDelete} type="primary" danger>Borrar</Button>
+                </Col>
+            </Row>
+        </>
     )
 }
 

@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import { Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { usersSelector } from '../../store/users/selectors';
 import { fetchUsersStartThunk } from '../../store/users/thunks';
-import { Link } from 'react-router-dom';
+import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner';
+import UsersTable from '../../components/usersTable/UsersTable';
+import styles from './UserList.module.css';
 
 const UserList = () => {
     const users = useSelector(usersSelector);
@@ -15,22 +18,20 @@ const UserList = () => {
     }, [isLoading, dispatch]);
 
     return isLoading === 'loading' ? (
-        "...Loading"
+            <LoadingSpinner/>
         ) : (
-            <>
-                <div className="container">
+           <>
+                <Row type="flex" justify="center" className={styles.title_wrapper}>
+                    <Col>
                         <h1>Lista de usuarios</h1>
-                        {users.map((user) => (<div className="row" key={user?.id}>
-                            <div className="col-4">
-                                {user.name}
-                            </div>
-                            <div className="col-3">
-                                <Link to={`/users/delete/${user?.id}`}>Borrar</Link>
-                                <Link to={`/users/update/${user?.id}`}>Editar</Link>
-                            </div>
-                        </div>))}
-                </div>
-            </>
+                    </Col>
+                </Row>
+                <Row type="flex" justify="center">
+                    <Col>
+                        <UsersTable data={users}/>
+                    </Col>
+                </Row>
+           </>
         )
 }
 

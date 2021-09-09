@@ -1,18 +1,16 @@
 import './App.css';
 import UserList from './containers/userList/UserList';
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UserDelete from './containers/userDelete/UserDelete';
 import UserCreate from './containers/userCreate/UserCreate';
 import UserUpdate from './containers/userUpdate/UserUpdate';
+import NavBar from './containers/navBar/NavBar';
 
 function App() {
   return (
     <div className="App">
      <Router>
-       <nav>
-         <NavLink to="/">Home</NavLink> | 
-         <NavLink to="/create">Crear</NavLink>
-       </nav>
+       <NavBar/>
        <Switch>
          <Route path="/" exact>
            <UserList/>
